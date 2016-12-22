@@ -23,6 +23,7 @@ public class QueueManager implements Listener, Runnable {
         this.instance = instance;
         this.queuedPlayers = new ArrayList<>();
         Bukkit.getPluginManager().registerEvents(this, instance);
+        Bukkit.getScheduler().runTaskTimer(instance, this, 100L, 100L);
     }
 
     public boolean addToQueue(Player player) {
@@ -64,7 +65,10 @@ public class QueueManager implements Listener, Runnable {
                 continue;
             }
 
-            Request request = new Request(player1.getUniqueId(), player2.getUniqueId(), new Settings(player2.getUniqueId(), null));
+            Settings settings = new Settings(player2.getUniqueId(), null);
+            settings.setKit(instance.getKitManager().getRandomKit().getName());
+
+            Request request = new Request(player1.getUniqueId(), player2.getUniqueId(), settings);
             instance.getDuelManager().startMatch(player1, player2, request);
         }
     }

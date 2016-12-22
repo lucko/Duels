@@ -1,5 +1,6 @@
 package me.realized.duels.kits;
 
+import com.google.common.collect.ImmutableList;
 import com.google.gson.reflect.TypeToken;
 import me.realized.duels.Core;
 import me.realized.duels.arena.ArenaManager;
@@ -24,6 +25,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class KitManager implements Listener, Reloadable {
 
@@ -200,6 +202,11 @@ public class KitManager implements Listener, Reloadable {
         });
 
         return kits;
+    }
+
+    public Kit getRandomKit() {
+        List<Kit> kits = ImmutableList.copyOf(this.kits.values());
+        return kits.get(ThreadLocalRandom.current().nextInt(kits.size()));
     }
 
     public List<String> getKitNames() {
