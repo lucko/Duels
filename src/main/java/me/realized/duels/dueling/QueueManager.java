@@ -1,6 +1,7 @@
 package me.realized.duels.dueling;
 
 import me.realized.duels.Core;
+import me.realized.duels.arena.Arena;
 import me.realized.duels.hooks.CombatTagPlusHook;
 
 import org.bukkit.Bukkit;
@@ -39,7 +40,7 @@ public class QueueManager implements Listener, Runnable {
     }
 
     public Integer getPosition(Player player) {
-        return queuedPlayers.indexOf(player.getUniqueId());
+        return queuedPlayers.indexOf(player.getUniqueId()) + 1;
     }
 
     public int getQueueSize() {
@@ -49,7 +50,8 @@ public class QueueManager implements Listener, Runnable {
     @Override
     public void run() {
         while (queuedPlayers.size() >= 2) {
-            if (instance.getArenaManager().getAvailableArena() == null) {
+            Arena arena = instance.getArenaManager().getAvailableArena();
+            if (arena == null) {
                 return;
             }
 
@@ -67,6 +69,7 @@ public class QueueManager implements Listener, Runnable {
 
             Settings settings = new Settings(player2.getUniqueId(), null);
             settings.setKit(instance.getKitManager().getRandomKit().getName());
+            settings.setArena(arena.getName());
 
             Request request = new Request(player1.getUniqueId(), player2.getUniqueId(), settings);
             instance.getDuelManager().startMatch(player1, player2, request);

@@ -38,6 +38,7 @@ permissions:
 
   duels.default:
     children:
+      duels.queue: true
       duels.duel: true
       duels.stats: true
       duels.toggle: true
