@@ -62,7 +62,7 @@ public class DuelManager implements Listener {
     }
 
     public boolean startMatch(Player player, Player target, Request request) {
-        if (config.isPatchesCancelMatchIfMoved() && (target.getLocation().getX() != request.getBase().getX() || target.getLocation().getY() != request.getBase().getY() || target.getLocation().getZ() != request.getBase().getZ())) {
+        if (config.isPatchesCancelMatchIfMoved() && request.getBase() != null && (target.getLocation().getX() != request.getBase().getX() || target.getLocation().getY() != request.getBase().getY() || target.getLocation().getZ() != request.getBase().getZ())) {
             Helper.pm(player, "Errors.match-failed", true, "{REASON}", target.getName() + " moved after sending request.");
             Helper.pm(target, "Errors.match-failed", true, "{REASON}", target.getName() + " moved after sending request.");
             return false;

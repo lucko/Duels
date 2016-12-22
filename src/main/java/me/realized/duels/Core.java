@@ -6,6 +6,7 @@ import me.realized.duels.arena.ArenaManager;
 import me.realized.duels.commands.BaseCommand;
 import me.realized.duels.commands.admin.DuelsCommand;
 import me.realized.duels.commands.duel.DuelCommand;
+import me.realized.duels.commands.other.QueueCommand;
 import me.realized.duels.commands.other.SpectateCommand;
 import me.realized.duels.configuration.ConfigManager;
 import me.realized.duels.configuration.ConfigType;
@@ -14,6 +15,7 @@ import me.realized.duels.configuration.MessagesConfig;
 import me.realized.duels.data.DataManager;
 import me.realized.duels.data.PlayerManager;
 import me.realized.duels.dueling.DuelManager;
+import me.realized.duels.dueling.QueueManager;
 import me.realized.duels.dueling.RequestManager;
 import me.realized.duels.dueling.SpectatorManager;
 import me.realized.duels.extension.ExtensionManager;
@@ -46,6 +48,7 @@ public class Core extends JavaPlugin {
     private SpectatorManager spectatorManager;
     private KitManager kitManager;
     private DuelManager duelManager;
+    private QueueManager queueManager;
     private ExtensionManager extensionManager;
 
     private final List<Reloadable> reloadables = new ArrayList<>();
@@ -93,8 +96,9 @@ public class Core extends JavaPlugin {
         reloadables.add(kitManager);
 
         duelManager = new DuelManager(this);
+        queueManager = new QueueManager(this);
 
-        List<BaseCommand> commands = Arrays.asList(new DuelsCommand(), new DuelCommand(), new SpectateCommand());
+        List<BaseCommand> commands = Arrays.asList(new DuelsCommand(), new DuelCommand(), new SpectateCommand(), new QueueCommand());
 
         for (BaseCommand command : commands) {
             getCommand(command.getName()).setExecutor(command);
@@ -185,6 +189,10 @@ public class Core extends JavaPlugin {
 
     public DuelManager getDuelManager() {
         return duelManager;
+    }
+
+    public QueueManager getQueueManager() {
+        return queueManager;
     }
 
     public Teleport getTeleport() {

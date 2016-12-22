@@ -6,6 +6,7 @@ import me.realized.duels.configuration.ConfigType;
 import me.realized.duels.configuration.MainConfig;
 import me.realized.duels.configuration.MessagesConfig;
 import me.realized.duels.data.DataManager;
+import me.realized.duels.dueling.QueueManager;
 import me.realized.duels.dueling.RequestManager;
 import me.realized.duels.dueling.SpectatorManager;
 import me.realized.duels.hooks.HookManager;
@@ -28,6 +29,7 @@ public abstract class BaseCommand implements CommandExecutor {
     protected final ArenaManager arenaManager = Core.getInstance().getArenaManager();
     protected final SpectatorManager spectatorManager = Core.getInstance().getSpectatorManager();
     protected final KitManager kitManager = Core.getInstance().getKitManager();
+    protected final QueueManager queueManager = Core.getInstance().getQueueManager();
     protected final HookManager hookManager = Core.getInstance().getHookManager();
 
     protected BaseCommand(String command, String permission) {

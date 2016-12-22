@@ -21,6 +21,9 @@ commands:
    spectate:
      description: Spectate a player in duel.
      aliases: [spec]
+   queue:
+     description: Join the duels queue.
+     aliases: [joinqueue, duelsqueue, duelqueue, fastduel]
    toggle:
      description: Enable or disable receiving duel requests.
      aliases: [tg]

@@ -24,6 +24,14 @@ Dueling:
 
 
 
+Queueing:
+  already-in-queue: '&9[Duels] &7You are already in the duels queue.'
+  not-already-in-queue: '&9[Duels] &7You are not in the duels queue.'
+  added-to-queue: '&9[Duels] &7You were added to the duels queue at position &f{POSITION}&7/&f{SIZE}&7.'
+  removed-from-queue: '&9[Duels] &7You were removed from the duels queue.'
+
+
+
 Spectating:
   # Placeholder(s): {PLAYER}
   started-spectating: '&9[Duels] &7You are now spectating &f{PLAYER}&7.'
@@ -151,6 +159,12 @@ Commands:
     usage:
       - 'Spectate a duel.'
       - '/spectate [player]'
+
+  queue:
+      usage:
+        - 'Join or leave the duels queue.'
+        - '/queue join'
+        - '/queue leave'
 
 
 
